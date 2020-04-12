@@ -62,10 +62,15 @@ export default function App() {
               <>
                 <Text style={styles.repository}>{repository.title}</Text>
 
-                <View style={styles.techsContainer}>
-                  <Text style={styles.tech}>ReactJS</Text>
-                  <Text style={styles.tech}>Node.js</Text>
-                </View>
+                <FlatList
+                  data={repository.techs}
+                  keyExtractor={(tech) => tech}
+                  renderItem={({ item: tech }) => (
+                    <View style={styles.techsContainer}>
+                      <Text style={styles.tech}>{tech}</Text>
+                    </View>
+                  )}
+                />
 
                 <View style={styles.likesContainer}>
                   <Text
@@ -73,7 +78,9 @@ export default function App() {
                     // Remember to replace "1" below with repository ID: {`repository-likes-${repository.id}`}
                     testID={`repository-likes-${repository.id}`}
                   >
-                    {repository.likes} curtidas
+                    {repository.likes === 1
+                      ? `${repository.likes} curtida`
+                      : `${repository.likes} curtidas`}
                   </Text>
                 </View>
 
