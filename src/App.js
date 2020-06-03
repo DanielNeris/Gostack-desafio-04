@@ -41,7 +41,7 @@ export default function App() {
       try {
         const response = await api.get("/repositories");
 
-        setRepositories(response.data.data);
+        setRepositories(response.data);
       } catch (error) {
         Alert.alert(`Error, ${error}`);
       }
